@@ -28,7 +28,11 @@ while play_game:
             key_word=test_word
             used_words.add(key_word)
 
-    word_knowledge= list("-"*len(key_word))
+    word_knowledge= list("_"*len(key_word))
+    check_locations=set()
+    known_locations=set()
+    for i in range(0,len(test_word)):
+        check_locations.add(i)
 
     guesses_remaining=7
     game_in_progress=True
@@ -57,9 +61,11 @@ while play_game:
                     if guesses_remaining>0:
                         print("That is incorrect.")
                 else:
-                    for i in range(0,len(key_word)):
-                        if key_word[i]==user_guess:
+                    for i in check_locations:
+                        if test_word[i]==user_guess:
                             word_knowledge[i]=user_guess
+                            known_locations.add(i)
+                    check_locations=check_locations-known_locations
                     if "".join(word_knowledge)==key_word:
                         print("You found all the letters, you won.")
                         wins+=1

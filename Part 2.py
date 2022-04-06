@@ -1,5 +1,10 @@
 test_word='apple'
-word_knowledge= list("-"*len(test_word))
+word_knowledge= list("_"*len(test_word))
+check_locations=set()
+known_locations=set()
+for i in range(0,len(test_word)):
+    check_locations.add(i)
+
 guesses_remaining=7
 game_in_progress=True
 guess_count=1
@@ -32,9 +37,11 @@ while game_in_progress:
                 if guesses_remaining>0:
                     print("That is incorrect.")
             else:
-                for i in range(0,len(test_word)):
+                for i in check_locations:
                     if test_word[i]==user_guess:
                         word_knowledge[i]=user_guess
+                        known_locations.add(i)
+                check_locations=check_locations-known_locations
                 if "".join(word_knowledge)==test_word:
                     print("You found all the letters, you won.")
                     game_in_progress=False
@@ -45,7 +52,7 @@ while game_in_progress:
     if guesses_remaining==0:
         print("That is incorrect, and was your last guess.  I'm sorry, you lost.")
         game_in_progress=False
-                
+print(f'The word was {test_word}')                
 print(f'You made the following guesses: {guesses_made}')
 
 
