@@ -41,7 +41,7 @@ while play_game:
 
     while game_in_progress:
         user_guess=guess_prompt()
-        guesses_made[user_guess]=guess_count
+        guesses_made[guess_count]=user_guess
         guess_count+=1
         valid_guess=user_guess.isalpha()
         if valid_guess:
