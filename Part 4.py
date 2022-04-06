@@ -40,23 +40,28 @@ while play_game:
     guesses_made={}
 
     while game_in_progress:
+        repeat_guess=False
         user_guess=guess_prompt()
+        if user_guess in guesses_made.values():
+            repeat_guess=True
+            guesses_remaining-=1
+            print(f'You have already guessed that.')
         guesses_made[guess_count]=user_guess
         guess_count+=1
         valid_guess=user_guess.isalpha()
         if valid_guess:
             user_guess=user_guess.lower()
-            if len(user_guess)!=1:
+            if len(user_guess)!=1 and not repeat_guess:
                 if user_guess==key_word:
                     print("You correctly guessed the word!  Congratulations, you won!")
                     wins+=1
                     game_in_progress=False
-                else:
+                elif not repeat_guess:
                     guesses_remaining-=1
                     if guesses_remaining>0:
                         print("That is incorrect.")
             else:
-                if key_word.find(user_guess)==-1:
+                if key_word.find(user_guess)==-1 and not repeat_guess:
                     guesses_remaining-=1
                     if guesses_remaining>0:
                         print("That is incorrect.")
@@ -70,7 +75,7 @@ while play_game:
                         print("You found all the letters, you won.")
                         wins+=1
                         game_in_progress=False
-        else:
+        elif not repeat_guess:
             guesses_remaining-=1
             if guesses_remaining>0:
                 print("That is incorrect (invalid guess)")
@@ -80,10 +85,10 @@ while play_game:
             game_in_progress=False
     print(f'The word was: {key_word}')
     print(f'You made the following guesses: {guesses_made}')
-    play_again=input("If you would like to play again type AGAIN, otherwise thanks for playing")
+    play_again=input("If you would like to play again type AGAIN, otherwise thanks for playing  ")
     if play_again!="AGAIN":
         play_game=False
-print(f'You played {wins+loses} games with these words:{used_words}, earning {wins} wins and {loses} loses')
+print(f'You played {wins+loses} games with the words:{used_words}, earning {wins} wins and {loses} loses')
 
 
 

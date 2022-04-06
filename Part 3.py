@@ -23,7 +23,12 @@ def guess_prompt():
     return guess
 
 while game_in_progress:
+    repeat_guess=False
     user_guess=guess_prompt()
+    if user_guess in guesses_made.values():
+        repeat_guess=True
+        guesses_remaining-=1
+        print(f'You have already guessed that.')
     guesses_made[guess_count]=user_guess
     guess_count+=1
     valid_guess=user_guess.isalpha()
@@ -33,12 +38,12 @@ while game_in_progress:
             if user_guess==test_word:
                 print("You correctly guessed the word!  Congratulations, you won!")
                 game_in_progress=False
-            else:
+            elif not repeat_guess:
                 guesses_remaining-=1
                 if guesses_remaining>0:
                     print("That is incorrect.")
         else:
-            if test_word.find(user_guess)==-1:
+            if test_word.find(user_guess)==-1 and not repeat_guess:
                 guesses_remaining-=1
                 if guesses_remaining>0:
                     print("That is incorrect.")
@@ -51,7 +56,7 @@ while game_in_progress:
                 if "".join(word_knowledge)==test_word:
                     print("You found all the letters, you won.")
                     game_in_progress=False
-    else:
+    elif not repeat_guess:
         guesses_remaining-=1
         if guesses_remaining>0:
             print("That is incorrect (invalid guess)")
