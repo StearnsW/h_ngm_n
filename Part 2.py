@@ -52,7 +52,7 @@ while game_in_progress: # the game loop, runs until an end condition changes nee
                 for i in check_locations: # loop through the blank locations to see which need replacing
                     if test_word[i]==user_guess: # replace values where appropriate
                         word_knowledge[i]=user_guess
-                        known_locations.add(i)
+                        known_locations.add(i) # add changed locations to known locations
 
                 check_locations=check_locations-known_locations # adjust blank locations for next iteration
                 if "".join(word_knowledge)==test_word: # check if the player knows all the information to have won
