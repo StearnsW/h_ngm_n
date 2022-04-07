@@ -6,6 +6,7 @@ words_file.close()
 
 test_word=random.choice(list_of_words)
 word_knowledge= list("_"*len(test_word))
+
 check_locations=set()
 known_locations=set()
 for i in range(0,len(test_word)):

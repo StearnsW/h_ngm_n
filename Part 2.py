@@ -1,5 +1,6 @@
 test_word='apple'
 word_knowledge= list("_"*len(test_word))
+
 check_locations=set()
 known_locations=set()
 for i in range(0,len(test_word)):

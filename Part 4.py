@@ -31,7 +31,7 @@ while play_game:
     word_knowledge= list("_"*len(key_word))
     check_locations=set()
     known_locations=set()
-    for i in range(0,len(test_word)):
+    for i in range(0,len(key_word)):
         check_locations.add(i)
 
     guesses_remaining=7
@@ -67,7 +67,7 @@ while play_game:
                         print("That is incorrect.")
                 else:
                     for i in check_locations:
-                        if test_word[i]==user_guess:
+                        if key_word[i]==user_guess:
                             word_knowledge[i]=user_guess
                             known_locations.add(i)
                     check_locations=check_locations-known_locations
