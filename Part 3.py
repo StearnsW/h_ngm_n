@@ -4,7 +4,7 @@ words_file=open("words_alpha(word list from gitHub).txt") # open list file to re
 list_of_words=list(words_file.read().splitlines()) # turn list file data into a list
 words_file.close() # close list file
 
-test_word=random.choice(list_of_words) # word to test game with
+test_word=random.choice(list_of_words).lower() # word to test game with
 word_knowledge= list("_"*len(test_word)) # what the player knows about the word
 
 check_locations=set() # unknown letter locations

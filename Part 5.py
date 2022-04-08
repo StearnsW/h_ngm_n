@@ -36,7 +36,7 @@ def get_word():
     words_file=open("words_alpha(word list from gitHub).txt") # open list file to read in data
     list_of_words=list(words_file.read().splitlines()) # turn list file data into a list
     words_file.close() # close list file
-    word=random.choice(list_of_words) # chose a random word from the list
+    word=random.choice(list_of_words).lower() # chose a random word from the list
     return word
 
 # loop to play multiple instances of the game
